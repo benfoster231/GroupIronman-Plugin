@@ -21,6 +21,8 @@ public class ExamplePlugin extends Plugin {
 
     private boolean isFeatureEnabled;
     private final ReentrantLock lock = new ReentrantLock();
+    @Inject
+    private Client client;
 
     @Override
     protected void startUp() throws Exception {
