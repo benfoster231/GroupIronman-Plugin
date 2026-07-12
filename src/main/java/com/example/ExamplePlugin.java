@@ -26,6 +26,7 @@ public class ExamplePlugin extends Plugin {
 
     @Override
     protected void startUp() throws Exception {
+        log.info("Toggle Script started!");
         toggleLock.lock();
         try {
             isFeatureEnabled = false;
@@ -36,6 +37,7 @@ public class ExamplePlugin extends Plugin {
 
     @Override
     protected void shutDown() throws Exception {
+        log.info("Toggle Script stopped!");
         toggleLock.lock();
         try {
             isFeatureEnabled = false;
