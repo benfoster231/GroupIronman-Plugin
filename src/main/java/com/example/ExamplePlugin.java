@@ -31,7 +31,7 @@ public class ExamplePlugin extends Plugin {
     public void onGroundItemSpawned(GroundItemSpawned event) {
         if (client.getGameState() == GameState.LOGGED_IN) {
             // Check for specific ground items and toggle features accordingly
-            if (event.getItem().getId() == /* ID of the first feature */) {
+            if (event.getItem().getId() == 12345) { // Replace 12345 with the actual ID of the first feature
                 isFeatureEnabled = !isFeatureEnabled;
                 toggleFeature();
             }
