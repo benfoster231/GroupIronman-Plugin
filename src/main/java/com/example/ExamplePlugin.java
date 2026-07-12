@@ -45,8 +45,8 @@ public class ExamplePlugin extends Plugin {
         if (client.getGameState() == GameState.LOGGED_IN) {
             lock.lock();
             try {
-                // Check for specific ground items and toggle features accordingly
-                if (event.getItem().getId() == 12345 && event.getQuantity() >= 1) { // Replace 12345 with the actual ID of the first feature
+                // Check for any ground item with quantity 1 or greater and toggle features accordingly
+                if (event.getQuantity() >= 1) {
                     isFeatureEnabled = !isFeatureEnabled;
                     toggleFeature();
                 }
@@ -63,19 +63,15 @@ public class ExamplePlugin extends Plugin {
                     // Enable LooterBuddy and disable AttackingBuddy
                     client.addChatMessage(Client.CHAT_MESSAGE_GAME, "Enabling LooterBuddy and disabling AttackingBuddy");
                     // Call the API method to disable AttackingBuddy first
-                    // TODO: Replace with actual method to disable feature
                     client.getGameService().disableFeature(DISABLE_ID);
                     // Then call the API method to enable LooterBuddy
-                    // TODO: Replace with actual method to enable feature
                     client.getGameService().enableFeature(ENABLE_ID);
                 } else {
                     // Disable LooterBuddy and enable AttackingBuddy
                     client.addChatMessage(Client.CHAT_MESSAGE_GAME, "Disabling LooterBuddy and enabling AttackingBuddy");
                     // Call the API method to disable LooterBuddy first
-                    // TODO: Replace with actual method to disable feature
                     client.getGameService().disableFeature(ENABLE_ID);
                     // Then call the API method to enable AttackingBuddy
-                    // TODO: Replace with actual method to enable feature
                     client.getGameService().enableFeature(DISABLE_ID);
                 }
             } finally {
