@@ -7,8 +7,6 @@ import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 
-import java.util.concurrent.locks.ReentrantLock;
-
 @PluginDescriptor(
     name = "Dynamic Toggle Script",
     description = "Switches between two feature states based on ground item spawns"
