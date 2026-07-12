@@ -20,34 +20,34 @@ public class ExamplePlugin extends Plugin {
     public static final String ENABLE_ID = "LooterBuddy";
 
     private boolean isFeatureEnabled;
-    private final ReentrantLock lock = new ReentrantLock();
+    private final ReentrantLock toggleLock = new ReentrantLock();
     @Inject
     private Client client;
 
     @Override
     protected void startUp() throws Exception {
-        lock.lock();
+        toggleLock.lock();
         try {
             isFeatureEnabled = false;
         } finally {
-            lock.unlock();
+            toggleLock.unlock();
         }
     }
 
     @Override
     protected void shutDown() throws Exception {
-        lock.lock();
+        toggleLock.lock();
         try {
             isFeatureEnabled = false;
         } finally {
-            lock.unlock();
+            toggleLock.unlock();
         }
     }
 
     @Subscribe
     public void onGroundItemSpawned(GroundItemSpawned event) {
         if (client.getGameState() == GameState.LOGGED_IN) {
-            lock.lock();
+            toggleLock.lock();
             try {
                 // Check for any ground item with quantity 1 or greater and toggle features accordingly
                 if (event.getQuantity() >= 1) {
@@ -55,32 +55,31 @@ public class ExamplePlugin extends Plugin {
                     toggleFeature();
                 }
             } finally {
-                lock.unlock();
+                toggleLock.unlock();
             }
         }
     }
 
     private void toggleFeature() {
-        if (lock.tryLock()) {
-            try {
-                if (isFeatureEnabled) {
-                    // Enable LooterBuddy and disable AttackingBuddy
-                    client.addChatMessage(Client.CHAT_MESSAGE_GAME, "Enabling LooterBuddy and disabling AttackingBuddy");
-                    // Call the API method to disable AttackingBuddy first
-                    client.getGameService().disableFeature(DISABLE_ID);
-                    // Then call the API method to enable LooterBuddy
-                    client.getGameService().enableFeature(ENABLE_ID);
-                } else {
-                    // Disable LooterBuddy and enable AttackingBuddy
-                    client.addChatMessage(Client.CHAT_MESSAGE_GAME, "Disabling LooterBuddy and enabling AttackingBuddy");
-                    // Call the API method to disable LooterBuddy first
-                    client.getGameService().disableFeature(ENABLE_ID);
-                    // Then call the API method to enable AttackingBuddy
-                    client.getGameService().enableFeature(DISABLE_ID);
-                }
-            } finally {
-                lock.unlock();
+        toggleLock.lock();
+        try {
+            if (isFeatureEnabled) {
+                // Enable LooterBuddy and disable AttackingBuddy
+                client.addChatMessage(Client.CHAT_MESSAGE_GAME, "Enabling LooterBuddy and disabling AttackingBuddy");
+                // Call the API method to disable AttackingBuddy first
+                client.getGameService().disableFeature(DISABLE_ID);
+                // Then call the API method to enable LooterBuddy
+                client.getGameService().enableFeature(ENABLE_ID);
+            } else {
+                // Disable LooterBuddy and enable AttackingBuddy
+                client.addChatMessage(Client.CHAT_MESSAGE_GAME, "Disabling LooterBuddy and enabling AttackingBuddy");
+                // Call the API method to disable LooterBuddy first
+                client.getGameService().disableFeature(ENABLE_ID);
+                // Then call the API method to enable AttackingBuddy
+                client.getGameService().enableFeature(DISABLE_ID);
             }
+        } finally {
+            toggleLock.unlock();
         }
     }
 }
