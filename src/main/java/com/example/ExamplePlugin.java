@@ -56,6 +56,7 @@ public class ExamplePlugin extends Plugin {
         try {
             // Logic check: Trigger on any item spawn if quantity is 1 or more
             if (event.getQuantity() >= 1) {
+                log.info("Ground item detected! Sequential toggle initiated.");
                 isFeatureEnabled = !isFeatureEnabled;
                 toggleFeature();
             }
