@@ -60,11 +60,19 @@ public class ExamplePlugin extends Plugin {
         if (lock.tryLock()) {
             try {
                 if (isFeatureEnabled) {
-                    // Enable LooterBuddy
-                    client.addChatMessage(Client.CHAT_MESSAGE_GAME, "Enabling LooterBuddy");
+                    // Enable LooterBuddy and disable AttackingBuddy
+                    client.addChatMessage(Client.CHAT_MESSAGE_GAME, "Enabling LooterBuddy and disabling AttackingBuddy");
+                    // Call the API method to disable AttackingBuddy first
+                    client.getGameService().disableFeature(DISABLE_ID);
+                    // Then call the API method to enable LooterBuddy
+                    client.getGameService().enableFeature(ENABLE_ID);
                 } else {
                     // Disable LooterBuddy and enable AttackingBuddy
                     client.addChatMessage(Client.CHAT_MESSAGE_GAME, "Disabling LooterBuddy and enabling AttackingBuddy");
+                    // Call the API method to disable LooterBuddy first
+                    client.getGameService().disableFeature(ENABLE_ID);
+                    // Then call the API method to enable AttackingBuddy
+                    client.getGameService().enableFeature(DISABLE_ID);
                 }
             } finally {
                 lock.unlock();
