@@ -48,17 +48,19 @@ public class ExamplePlugin extends Plugin {
 
     @Subscribe
     public void onGroundItemSpawned(GroundItemSpawned event) {
-        if (client.getGameState() == GameState.LOGGED_IN) {
-            toggleLock.lock();
-            try {
-                // Check for any ground item with quantity 1 or greater and toggle features accordingly
-                if (event.getQuantity() >= 1) {
-                    isFeatureEnabled = !isFeatureEnabled;
-                    toggleFeature();
-                }
-            } finally {
-                toggleLock.unlock();
+        if (client.getGameState() != GameState.LOGGED_IN) {
+            return;
+        }
+
+        toggleLock.lock();
+        try {
+            // Check for any ground item with quantity 1 or greater and toggle features accordingly
+            if (event.getQuantity() >= 1) {
+                isFeatureEnabled = !isFeatureEnabled;
+                toggleFeature();
             }
+        } finally {
+            toggleLock.unlock();
         }
     }
 
