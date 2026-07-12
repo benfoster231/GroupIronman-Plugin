@@ -63,15 +63,19 @@ public class ExamplePlugin extends Plugin {
                     // Enable LooterBuddy and disable AttackingBuddy
                     client.addChatMessage(Client.CHAT_MESSAGE_GAME, "Enabling LooterBuddy and disabling AttackingBuddy");
                     // Call the API method to disable AttackingBuddy first
+                    // TODO: Replace with actual method to disable feature
                     client.getGameService().disableFeature(DISABLE_ID);
                     // Then call the API method to enable LooterBuddy
+                    // TODO: Replace with actual method to enable feature
                     client.getGameService().enableFeature(ENABLE_ID);
                 } else {
                     // Disable LooterBuddy and enable AttackingBuddy
                     client.addChatMessage(Client.CHAT_MESSAGE_GAME, "Disabling LooterBuddy and enabling AttackingBuddy");
                     // Call the API method to disable LooterBuddy first
+                    // TODO: Replace with actual method to disable feature
                     client.getGameService().disableFeature(ENABLE_ID);
                     // Then call the API method to enable AttackingBuddy
+                    // TODO: Replace with actual method to enable feature
                     client.getGameService().enableFeature(DISABLE_ID);
                 }
             } finally {
