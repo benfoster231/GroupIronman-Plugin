@@ -3,13 +3,17 @@ package com.example;
 import net.runelite.api.Client;
 import net.runelite.api.GameState;
 import net.runelite.api.events.GroundItemSpawned;
+import net.runelite.client.config.ConfigManager;
 import net.runelite.client.eventbus.Subscribe;
 import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 
+import java.util.concurrent.locks.ReentrantLock;
+
 @PluginDescriptor(
     name = "Dynamic Toggle Script",
-    description = "Switches between two feature states based on ground item spawns"
+    description = "Switches between two feature states based on ground item spawns",
+    enabledByDefault = false
 )
 public class ExamplePlugin extends Plugin {
     public static final String DISABLE_ID = "AttackingBuddy";
