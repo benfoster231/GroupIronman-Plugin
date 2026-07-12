@@ -54,7 +54,7 @@ public class ExamplePlugin extends Plugin {
 
         toggleLock.lock();
         try {
-            // Check for any ground item with quantity 1 or greater and toggle features accordingly
+            // Logic check: Trigger on any item spawn if quantity is 1 or more
             if (event.getQuantity() >= 1) {
                 isFeatureEnabled = !isFeatureEnabled;
                 toggleFeature();
