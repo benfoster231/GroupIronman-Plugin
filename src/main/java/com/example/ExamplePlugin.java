@@ -8,8 +8,8 @@ import net.runelite.client.plugins.Plugin;
 import net.runelite.client.plugins.PluginDescriptor;
 
 @PluginDescriptor(
-    name = "Example Plugin",
-    description = "Dynamic toggle script for ground item features"
+    name = "Dynamic Toggle Script",
+    description = "Switches between two feature states based on ground item spawns"
 )
 public class ExamplePlugin extends Plugin {
     public static final String DISABLE_ID = "AttackingBuddy";
