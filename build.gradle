@@ -31,9 +31,6 @@ tasks.withType(JavaCompile).configureEach {
     options.release.set(11)
 }
 
-// Define the main class for the plugin
-def pluginMainClass = 'com.example.LooterPlugin'
-
 tasks.register('run', JavaExec) {
     classpath = sourceSets.test.runtimeClasspath
     mainClass = pluginMainClass
