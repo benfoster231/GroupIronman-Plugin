@@ -14,14 +14,14 @@ repositories {
 
 dependencies {
     // Add the necessary dependency for the Plugin class
-    implementation group: 'net.runelite', name: 'api', version: '1.8.20' // Updated to a different version
+    implementation group: 'net.runelite', name: 'api', version: '1.8.21' // Updated to a different version
 
     compileOnly 'org.projectlombok:lombok:1.18.30'
     annotationProcessor 'org.projectlombok:lombok:1.18.30'
 
     testImplementation 'junit:junit:4.12'
-    testImplementation group: 'net.runelite', name: 'api', version: '1.8.20' // Updated to a different version
-    testImplementation group: 'net.runelite', name: 'jshell', version: '1.8.20' // Updated to a different version
+    testImplementation group: 'net.runelite', name: 'api', version: '1.8.21' // Updated to a different version
+    testImplementation group: 'net.runelite', name: 'jshell', version: '1.8.21' // Updated to a different version
 }
 
 group = 'com.looter'
